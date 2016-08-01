@@ -1,22 +1,21 @@
 //
-//  JKDataBase.m
-//  JKBaseModel
+//  XMDataBase.m
+//  XMBaseModel
 //
-//  Created by zx_04 on 15/6/24.
+//  Created by 王续敏 on 16/8/1.
+//  Copyright © 2016年 王续敏. All rights reserved.
 //
-//
+#import "XMDBHelper.h"
 
-#import "JKDBHelper.h"
-
-@interface JKDBHelper ()
+@interface XMDBHelper ()
 
 @property (nonatomic, retain) FMDatabaseQueue *dbQueue;
 
 @end
 
-@implementation JKDBHelper
+@implementation XMDBHelper
 
-static JKDBHelper *_instance = nil;
+static XMDBHelper *_instance = nil;
 
 + (instancetype)shareInstance
 {
@@ -38,7 +37,7 @@ static JKDBHelper *_instance = nil;
     if (!exit || !isDir) {
         [filemanage createDirectoryAtPath:docsdir withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    NSString *dbpath = [WisdomSecretaryPath stringByAppendingPathComponent:@"message.sqlite"];
+    NSString *dbpath = [docsdir stringByAppendingPathComponent:@"message.sqlite"];
     return dbpath;
 }
 
@@ -52,12 +51,12 @@ static JKDBHelper *_instance = nil;
 
 + (id)allocWithZone:(struct _NSZone *)zone
 {
-    return [JKDBHelper shareInstance];
+    return [XMDBHelper shareInstance];
 }
 
 - (id)copyWithZone:(struct _NSZone *)zone
 {
-    return [JKDBHelper shareInstance];
+    return [XMDBHelper shareInstance];
 }
 
 #if ! __has_feature(objc_arc)

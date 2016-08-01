@@ -1,9 +1,9 @@
 //
-//  JKBaseModel.h
-//  JKBaseModel
+//  XMBaseModel.h
+//  XMBaseModel
 //
-//  Created by zx_04 on 15/6/27.
-//  Copyright (c) 2015年 joker. All rights reserved.
+//  Created by 王续敏 on 16/8/1.
+//  Copyright © 2016年 王续敏. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -18,10 +18,10 @@
 
 #define primaryId   @"pk"
 
-@interface JKDBModel : NSObject
+@interface XMDBModel : NSObject
 
 /** 主键 id */
-@property (nonatomic, assign)   int        pk;
+@property (nonatomic, assign)   int  pk;
 /** 列名 */
 @property (retain, readonly, nonatomic) NSMutableArray         *columeNames;
 /** 列类型 */

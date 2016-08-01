@@ -1,22 +1,21 @@
 //
-//  JKBaseModel.m
-//  JKBaseModel
+//  XMBaseModel.m
+//  XMBaseModel
 //
-//  Created by zx_04 on 15/6/27.
-//  Copyright (c) 2015年 joker. All rights reserved.
+//  Created by 王续敏 on 16/8/1.
+//  Copyright © 2016年 王续敏. All rights reserved.
 //
-
-#import "JKDBModel.h"
-#import "JKDBHelper.h"
+#import "XMDBModel.h"
+#import "XMDBHelper.h"
 
 #import <objc/runtime.h>
 
-@implementation JKDBModel
+@implementation XMDBModel
 
 #pragma mark - override method
 + (void)initialize
 {
-    if (self != [JKDBModel self]) {
+    if (self != [XMDBModel self]) {
         [self createTable];
     }
 }
@@ -102,8 +101,8 @@
 + (BOOL)isExistInTable
 {
     __block BOOL res = NO;
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
-    [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
+    [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
          res = [db tableExists:tableName];
     }];
@@ -112,9 +111,9 @@
 
 + (NSArray *)getColumns
 {
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     NSMutableArray *columns = [NSMutableArray array];
-     [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+     [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
          NSString *tableName = NSStringFromClass(self.class);
          FMResultSet *resultSet = [db getTableSchema:tableName];
          while ([resultSet next]) {
@@ -131,7 +130,7 @@
  */
 + (BOOL)createTable
 {
-    FMDatabase *db = [FMDatabase databaseWithPath:[JKDBHelper dbPath]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[XMDBHelper dbPath]];
     if (![db open]) {
         NSLog(@"数据库打开失败!");
         return NO;
@@ -202,33 +201,33 @@
     [keyString deleteCharactersInRange:NSMakeRange(keyString.length - 1, 1)];
     [valueString deleteCharactersInRange:NSMakeRange(valueString.length - 1, 1)];
     
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     __block BOOL res = NO;
-    [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+    [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *sql = [NSString stringWithFormat:@"INSERT INTO %@(%@) VALUES (%@);", tableName, keyString, valueString];
         res = [db executeUpdate:sql withArgumentsInArray:insertValues];
         self.pk = res?[NSNumber numberWithLongLong:db.lastInsertRowId].intValue:0;
         NSLog(res?@"插入成功":@"插入失败");
     }];
-    NSLog(@"数据库存储位置%@",[JKDBHelper dbPath]);
+    NSLog(@"数据库存储位置%@",[XMDBHelper dbPath]);
     return res;
 }
 
 /** 批量保存用户对象 */
 + (BOOL)saveObjects:(NSArray *)array
 {
-    //判断是否是JKBaseModel的子类
-    for (JKDBModel *model in array) {
-        if (![model isKindOfClass:[JKDBModel class]]) {
+    //判断是否是XMBaseModel的子类
+    for (XMDBModel *model in array) {
+        if (![model isKindOfClass:[XMDBModel class]]) {
             return NO;
         }
     }
     
     __block BOOL res = YES;
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     // 如果要支持事务
-    [jkDB.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        for (JKDBModel *model in array) {
+    [XMDB.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        for (XMDBModel *model in array) {
             NSString *tableName = NSStringFromClass(model.class);
             NSMutableString *keyString = [NSMutableString string];
             NSMutableString *valueString = [NSMutableString string];
@@ -266,9 +265,9 @@
 /** 更新单个对象 */
 - (BOOL)update
 {
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     __block BOOL res = NO;
-    [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+    [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
         id primaryValue = [self valueForKey:primaryId];
         if (!primaryValue || primaryValue <= 0) {
@@ -302,16 +301,16 @@
 /** 批量更新用户对象*/
 + (BOOL)updateObjects:(NSArray *)array
 {
-    for (JKDBModel *model in array) {
-        if (![model isKindOfClass:[JKDBModel class]]) {
+    for (XMDBModel *model in array) {
+        if (![model isKindOfClass:[XMDBModel class]]) {
             return NO;
         }
     }
     __block BOOL res = YES;
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     // 如果要支持事务
-    [jkDB.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        for (JKDBModel *model in array) {
+    [XMDB.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        for (XMDBModel *model in array) {
             NSString *tableName = NSStringFromClass(model.class);
             id primaryValue = [model valueForKey:primaryId];
             if (!primaryValue || primaryValue <= 0) {
@@ -355,9 +354,9 @@
 /** 删除单个对象 */
 - (BOOL)deleteObject
 {
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     __block BOOL res = NO;
-    [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+    [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
         id primaryValue = [self valueForKey:primaryId];
         if (!primaryValue || primaryValue <= 0) {
@@ -373,17 +372,17 @@
 /** 批量删除用户对象 */
 + (BOOL)deleteObjects:(NSArray *)array
 {
-    for (JKDBModel *model in array) {
-        if (![model isKindOfClass:[JKDBModel class]]) {
+    for (XMDBModel *model in array) {
+        if (![model isKindOfClass:[XMDBModel class]]) {
             return NO;
         }
     }
     
     __block BOOL res = YES;
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     // 如果要支持事务
-    [jkDB.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        for (JKDBModel *model in array) {
+    [XMDB.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+        for (XMDBModel *model in array) {
             NSString *tableName = NSStringFromClass(model.class);
             id primaryValue = [model valueForKey:primaryId];
             if (!primaryValue || primaryValue <= 0) {
@@ -406,9 +405,9 @@
 /** 通过条件删除数据 */
 + (BOOL)deleteObjectsByCriteria:(NSString *)criteria
 {
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     __block BOOL res = NO;
-    [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+    [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ %@ ",tableName,criteria];
         res = [db executeUpdate:sql];
@@ -420,9 +419,9 @@
 /** 清空表 */
 + (BOOL)clearTable
 {
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     __block BOOL res = NO;
-    [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+    [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
         NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@",tableName];
         res = [db executeUpdate:sql];
@@ -434,15 +433,15 @@
 /** 查询全部数据 */
 + (NSArray *)findAll
 {
-     NSLog(@"jkdb---%s",__func__);
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+     NSLog(@"XMdb---%s",__func__);
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     NSMutableArray *users = [NSMutableArray array];
-    [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+    [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
         NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@",tableName];
         FMResultSet *resultSet = [db executeQuery:sql];
         while ([resultSet next]) {
-            JKDBModel *model = [[self.class alloc] init];
+            XMDBModel *model = [[self.class alloc] init];
             for (int i=0; i< model.columeNames.count; i++) {
                  NSString *columeName = [model.columeNames objectAtIndex:i];
                  NSString *columeType = [model.columeTypes objectAtIndex:i];
@@ -480,14 +479,14 @@
 /** 通过条件查找数据 */
 + (NSArray *)findByCriteria:(NSString *)criteria
 {
-    JKDBHelper *jkDB = [JKDBHelper shareInstance];
+    XMDBHelper *XMDB = [XMDBHelper shareInstance];
     NSMutableArray *users = [NSMutableArray array];
-    [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+    [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
         NSString *tableName = NSStringFromClass(self.class);
         NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ %@",tableName,criteria];
         FMResultSet *resultSet = [db executeQuery:sql];
         while ([resultSet next]) {
-            JKDBModel *model = [[self.class alloc] init];
+            XMDBModel *model = [[self.class alloc] init];
             for (int i=0; i< model.columeNames.count; i++) {
                 NSString *columeName = [model.columeNames objectAtIndex:i];
                 NSString *columeType = [model.columeTypes objectAtIndex:i];
@@ -552,9 +551,9 @@
     
     NSString *selectSQL = [NSString stringWithFormat:@"SELECT Count(*) FROM %@",tableName]; //where status =0 是刷选条件，随你写，可不写的
 //
-     JKDBHelper *jkDB = [JKDBHelper shareInstance];
+     XMDBHelper *XMDB = [XMDBHelper shareInstance];
    __block int  count = 0;
-    [jkDB.dbQueue inDatabase:^(FMDatabase *db) {
+    [XMDB.dbQueue inDatabase:^(FMDatabase *db) {
        count = [db intForQuery:selectSQL];
         
     }];
