@@ -1,15 +1,13 @@
 //
-//  ViewController.h
-//  XMDBModel
+//  Depart.m
+//  XMBaseModel
 //
 //  Created by 王续敏 on 16/8/1.
 //  Copyright © 2016年 王续敏. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "XMDepartModel.h"
 
-@interface ViewController : UIViewController
-
+@implementation XMDepartModel
 
 @end
-

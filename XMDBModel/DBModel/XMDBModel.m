@@ -549,7 +549,7 @@
     
      NSString *tableName = NSStringFromClass(self.class);
     
-    NSString *selectSQL = [NSString stringWithFormat:@"SELECT Count(*) FROM %@",tableName]; //where status =0 是刷选条件，随你写，可不写的
+    NSString *selectSQL = [NSString stringWithFormat:@"SELECT Count(*) FROM %@",tableName];
 //
      XMDBHelper *XMDB = [XMDBHelper shareInstance];
    __block int  count = 0;
