@@ -2,11 +2,14 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - SevenSwitch (1.4.0)
 
 DEPENDENCIES:
   - FMDB
+  - SevenSwitch (~> 1.4.0)
 
 SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  SevenSwitch: e992e56e2e7f401eb00538b9fa92bf848bacbe27
 
 COCOAPODS: 0.39.0
