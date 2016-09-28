@@ -1,5 +1,4 @@
-
 platform :ios,'8.0'
+target 'XMDBModel' do
 pod 'FMDB'
-pod 'SevenSwitch', '~> 1.4.0'
-pod 'GoogleMaps', '~> 2.0.1'
+end
