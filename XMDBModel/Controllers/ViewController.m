@@ -10,7 +10,6 @@
 #import "QueryTableViewController.h"
 #import "XMUserModel.h"
 #import "XMDepartModel.h"
-
 @implementation ViewController
 
 #pragma mark - 插入数据

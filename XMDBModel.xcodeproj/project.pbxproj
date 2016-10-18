@@ -10,11 +10,18 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
+		<key>2A8B9E9846BBA9402E6FCB6B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>DCF383BBEEF268F701CF933D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>2B46B018FA4BB1266278387D</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>798377C8BFD3A31A36BFE951</string>
+				<string>DCF383BBEEF268F701CF933D</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -22,13 +29,6 @@
 			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2FB6900878B3F02EE76A3BC8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>798377C8BFD3A31A36BFE951</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>3643E96A1D4EF17700471258</key>
 		<dict>
@@ -60,11 +60,17 @@
 					<dict>
 						<key>CreatedOnToolsVersion</key>
 						<string>7.3.1</string>
+						<key>DevelopmentTeam</key>
+						<string>T6E43D9JDV</string>
+						<key>LastSwiftMigration</key>
+						<string>0800</string>
 					</dict>
 					<key>3643E98B1D4EF17700471258</key>
 					<dict>
 						<key>CreatedOnToolsVersion</key>
 						<string>7.3.1</string>
+						<key>DevelopmentTeam</key>
+						<string>T6E43D9JDV</string>
 						<key>TestTargetID</key>
 						<string>3643E9721D4EF17700471258</string>
 					</dict>
@@ -72,6 +78,8 @@
 					<dict>
 						<key>CreatedOnToolsVersion</key>
 						<string>7.3.1</string>
+						<key>DevelopmentTeam</key>
+						<string>T6E43D9JDV</string>
 						<key>TestTargetID</key>
 						<string>3643E9721D4EF17700471258</string>
 					</dict>
@@ -149,7 +157,7 @@
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>2FB6900878B3F02EE76A3BC8</string>
+				<string>2A8B9E9846BBA9402E6FCB6B</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -837,6 +845,8 @@
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
 				<string>AppIcon</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>T6E43D9JDV</string>
 				<key>GCC_PREFIX_HEADER</key>
 				<string>$(SRCROOT)/XMDBModel/PrefixHeader.pch</string>
 				<key>INFOPLIST_FILE</key>
@@ -847,6 +857,8 @@
 				<string>wangxumin.XMDBModel</string>
 				<key>PRODUCT_NAME</key>
 				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
 			</dict>
 			<key>isa</key>
 			<string>XCBuildConfiguration</string>
@@ -861,6 +873,8 @@
 			<dict>
 				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
 				<string>AppIcon</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>T6E43D9JDV</string>
 				<key>GCC_PREFIX_HEADER</key>
 				<string>$(SRCROOT)/XMDBModel/PrefixHeader.pch</string>
 				<key>INFOPLIST_FILE</key>
@@ -871,6 +885,8 @@
 				<string>wangxumin.XMDBModel</string>
 				<key>PRODUCT_NAME</key>
 				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
 			</dict>
 			<key>isa</key>
 			<string>XCBuildConfiguration</string>
@@ -897,6 +913,8 @@
 			<dict>
 				<key>BUNDLE_LOADER</key>
 				<string>$(TEST_HOST)</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>T6E43D9JDV</string>
 				<key>INFOPLIST_FILE</key>
 				<string>XMDBModelTests/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
@@ -919,6 +937,8 @@
 			<dict>
 				<key>BUNDLE_LOADER</key>
 				<string>$(TEST_HOST)</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>T6E43D9JDV</string>
 				<key>INFOPLIST_FILE</key>
 				<string>XMDBModelTests/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
@@ -953,6 +973,8 @@
 		<dict>
 			<key>buildSettings</key>
 			<dict>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>T6E43D9JDV</string>
 				<key>INFOPLIST_FILE</key>
 				<string>XMDBModelUITests/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
@@ -973,6 +995,8 @@
 		<dict>
 			<key>buildSettings</key>
 			<dict>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>T6E43D9JDV</string>
 				<key>INFOPLIST_FILE</key>
 				<string>XMDBModelUITests/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
@@ -1319,19 +1343,6 @@ fi
 			<key>showEnvVarsInLog</key>
 			<string>0</string>
 		</dict>
-		<key>798377C8BFD3A31A36BFE951</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>libPods-XMDBModel.a</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>87736978CB15D5FEFB284B61</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -1385,6 +1396,19 @@ fi
 			<string>Pods/Target Support Files/Pods-XMDBModel/Pods-XMDBModel.debug.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DCF383BBEEF268F701CF933D</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-XMDBModel.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>
